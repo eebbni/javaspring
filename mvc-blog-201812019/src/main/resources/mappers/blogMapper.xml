@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="iducs.spring.blog1812019.mapper.BlogMapper">  
+  
+  	<insert id="create">
+  	insert into blog 
+  	values(seq_blog.nextval, #{title}, #{content}, #{filepath}, #{blogger}, #{regDateTime})
+  	</insert>
+  	
+    <select id="readList" resultType="iducs.spring.blog1812019.domain.Blog">
+    <![CDATA[
+    select 
+    	id, title, content, filepath, blogger, reg_date_time  
+    from
+    	blog 
+    order by id desc
+    ]]>    
+    </select>
+    
+    <select id="read" resultType="iducs.spring.blog1812019.domain.Blog">
+    select 
+    	* 
+    from
+    	blog 
+   	where id = #{id}
+    </select>
+    
+    <update id="update">
+    update blog 
+    set title=#{title}, content=#{content}, filepath=#{filepath}, 
+    blogger=#{blogger}, reg_date_time=#{regDateTime} 
+    where id = #{id}
+  	</update>
+  	
+  	<delete id="delete">
+  	delete 
+  	from blog 
+  	where id = #{id}
+  	</delete>
+</mapper>

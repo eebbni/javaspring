@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="52428800" />
+		<property name="maxInMemorySize" value="10000000" />
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	<!-- 
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="d:\\2020-1\\uploads" />
+	</bean>
+	-->
+	<!--  
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/spring/appServlet/oracle.properties</value>
+				<value>/WEB-INF/classes/application.properties</value>
+			</list>
+		</property>
+	</bean>
+	-->
+
+	<context:property-placeholder location="classpath:application.properties" /> 
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="blogRepository" class="iducs.spring.blog2012000.repository.BlogRepositoryImpl"> 
+		<constructor-arg ref="dataSource" />
+	</bean>
+		
+	<bean id="blogService" class="iducs.spring.blog2012000.service.BlogServiceImpl">
+		<constructor-arg ref="blogRepository" />
+	</bean>		
+	
+	<bean id="hiddenHttpMethodFilter" class="org.springframework.web.filter.HiddenHttpMethodFilter" /> 	
+</beans>

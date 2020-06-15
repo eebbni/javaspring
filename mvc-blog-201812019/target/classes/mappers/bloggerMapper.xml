@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="iducs.spring.blog1812019.mapper.BloggerMapper">  
+  
+  	<insert id="create">
+  	insert into blogger 
+  	values(seq_blogger.nextval, #{bid}, #{bpw}, #{bname}, #{bemail})
+  	</insert>
+  	
+    <select id="readList" resultType="iducs.spring.blog1812019.domain.Blogger">
+    <![CDATA[
+    select 
+    	id, bid, bpw, bname, bemail 
+    from
+    	blogger 
+    order by id desc
+    ]]>    
+    </select>
+    
+    <select id="read" resultType="iducs.spring.blog1812019.domain.Blogger">
+    select 
+    	* 
+    from
+    	blogger 
+   	where id = #{id}
+    </select>
+    
+   	<select id="findByBid" resultType="iducs.spring.blog1812019.domain.Blogger">
+    select 
+    	*
+    from
+    	blogger 
+   	where bid = #{bid}
+    </select>
+    
+    <update id="update">
+    update blogger 
+    set bid=#{bid}, bpw=#{bpw}, bname=#{bname}, bemail=#{bemail}  
+    where id = #{id}
+  	</update>
+  	
+  	<delete id="delete">
+  	delete 
+  	from blogger 
+  	where id = #{id}
+  	</delete>
+</mapper>
