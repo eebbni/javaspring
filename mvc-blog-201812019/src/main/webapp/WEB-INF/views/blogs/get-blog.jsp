@@ -48,7 +48,7 @@
           
           <div class="clearfix">
           	
-          <c:if test="${sessionScope.blogger.bid == blog.blogger || sessionScope.blogger.bid == 'admin'}">
+          <c:if test="${sessionScope.blogger.bid == blog.blogger || sessionScope.blogger.bid == 'admin1812019'}">
 	         <a class="btn btn-primary float-left" style="margin:5px;"href="./edit?id=${blog.id}">수정</a>
 	         <form method="post" action="./${blog.id}">
 	         	<input type="hidden" name="_method" value="DELETE"/>

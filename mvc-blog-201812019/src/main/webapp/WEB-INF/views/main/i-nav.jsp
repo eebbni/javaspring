@@ -34,6 +34,9 @@
 	        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Blog 관리</a>
 	        <div class="dropdown-menu" aria-labelledby="dropdown04">
 	          <a class="dropdown-item" href="../blogs/new">Create Blog</a>
+	          <c:if test="${sessionScope.blogger.bid == 'admin1812019'}">
+	          <a class="dropdown-item" href="../bloggers/all">member manage</a>
+	          </c:if>
 	        </div>
 	      </li>
           </c:otherwise>

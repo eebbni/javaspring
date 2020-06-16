@@ -23,9 +23,8 @@ public class BloggerServiceImpl implements BloggerService {
 	}
 	
 	@Override
-	public List<Blogger> getBloggers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Blogger> getBloggers() { // 모든 사용자 조회
+		return bloggerRepository.readList();
 	}
 
 	@Override

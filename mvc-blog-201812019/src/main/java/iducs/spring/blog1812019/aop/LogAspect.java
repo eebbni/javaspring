@@ -8,13 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-@Aspect
+@Aspect//�븷�끂�뀒�씠�뀡�궗�슜
 @Component
 public class LogAspect {
 	
 	Logger logger =  LoggerFactory.getLogger(LogAspect.class);
 
-	@Pointcut("execution(* iducs.spring.mvcblog.service.*ServiceImpl.*(..))")
+	@Pointcut("execution(* iducs.spring.blog1812019.service.*ServiceImpl.*(..))")
 	public void logginPointcut() { }
 	
     @Around("logginPointcut()")

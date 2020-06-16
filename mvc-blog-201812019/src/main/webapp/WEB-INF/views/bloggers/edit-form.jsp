@@ -8,7 +8,7 @@
 
   <%@ include file="../main/i-head.jsp" %>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>Blog Create : Clean Blog - Start Bootstrap Theme</title>
+  <title>Blogger Update : Clean Blog - Start Bootstrap Theme</title>
   	
   	<style>
 	:root {
@@ -139,8 +139,8 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>Write a Blog </h1>
-            <span class="subheading">블로그에 글을 남기십시요</span>
+            <h1>정보 수정 </h1>
+            <span class="subheading">블로거의 정보를 수정합니다.</span>
           </div>
         </div>
       </div>
@@ -150,9 +150,6 @@
     <div class="row">
       <div class="col-lg-10 col-xl-9 mx-auto">
         <div class="card card-signin flex-row my-5">
-          <div class="card-img-left d-none d-md-flex">
-             <!-- Background image for card set in CSS! -->
-          </div>
           <div class="card-body">
             <h5 class="card-title text-center">Info</h5>
             <form class="form-signin" action="./${sessionScope.blogger.id }" method="post" accept-charset="UTF-8">
@@ -171,6 +168,7 @@
               </div>              
               <div class="form-label-group">
                 <input type="text" name="bname" value="${blogger.bname }" id="inputName" class="form-control" placeholder="Name" required>
+              	<label for="inputName">Name</label>
               </div>  
               <div class="form-label-group">
                 <input type="email" name="bemail" value="${blogger.bemail }" id="inputEmail" class="form-control" placeholder="Email" required>
@@ -181,7 +179,12 @@
               <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit">Update</button>
               <button class="btn btn-lg btn-primary btn-block text-uppercase" type="reset">Reset</button>
               <hr class="my-4">
-             </form>
+              </form>
+              <form class="form-signin" method="post" action="../bloggers/${blogger.id}"
+              	onsubmit="return confirm('회원 탈퇴하시겠습니까?')">
+	         	<input type="hidden" name="_method" value="DELETE"/>
+	         	<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Delete</button>
+	          </form>
           </div>
         </div>
       </div>

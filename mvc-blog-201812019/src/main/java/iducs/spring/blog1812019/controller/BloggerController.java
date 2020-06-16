@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import iducs.spring.blog1812019.HomeController;
+import iducs.spring.blog1812019.domain.Blog;
 import iducs.spring.blog1812019.domain.Blogger;
 import iducs.spring.blog1812019.service.BloggerService;
 
@@ -34,7 +35,10 @@ public class BloggerController {
     
     @GetMapping("/bloggers/all") // 관리자(admin2012000)만 회원 목록 
     public String getBloggers(Model model) throws Exception {    
-    	// 생략
+    	logger.info("하위");
+    	List<Blogger> bloggerList = bloggerService.getBloggers();
+    	model.addAttribute("bloggerList",bloggerList);
+    	System.out.println(bloggerList);
         return "/bloggers/get-bloggers";
     }    
     
@@ -44,7 +48,7 @@ public class BloggerController {
         model.addAttribute("blogger", blogger);
         return "/bloggers/info-form";
     }
-    
+       
     @PostMapping("/bloggers") // 등록
     @Transactional    
     public String postBlogger(    		
@@ -136,6 +140,17 @@ public class BloggerController {
     	Blogger blogger = bloggerService.getBlogger(id);
         model.addAttribute("blogger", blogger);
         return "/bloggers/edit-form";
+    }
+    
+    @DeleteMapping("/bloggers/admin/{id}")
+    public String deleteBlog1(@PathVariable long id, HttpSession session, Model model) throws Exception {
+    	int count = bloggerService.deleteBlogger(id);
+    	logger.info(Long.toString(id));
+    	if(count > 0) {
+    		return "redirect:/bloggers/all";
+    	}
+    	else     		
+    		return "redirect:/bloggers/error";
     }
     
     @DeleteMapping("/bloggers/{id}")
